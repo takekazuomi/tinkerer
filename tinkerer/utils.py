@@ -12,7 +12,12 @@ import datetime
 import imp
 import os
 import re
-import urllib
+
+try:
+    from urllib.parse import quote, unquote
+except ImportError:
+    from urllib import quote, unquote
+
 
 
 UNICODE_ALNUM_PTN = re.compile(r"[\W_]+", re.U)
@@ -31,7 +36,7 @@ def name_from_title(title):
 
     name = UNICODE_ALNUM_PTN.sub(word_sep, title).lower().strip(word_sep)
 
-    return urllib.quote(name.encode("utf-8"))
+    return quote(name.encode("utf-8"))
 
 
 
@@ -41,7 +46,7 @@ def name_from_path(path):
     extension.
     '''
     name = os.path.splitext(os.path.basename(path))[0]
-    return urllib.unquote(name).decode("utf-8")
+    return unquote(name).decode("utf-8")
 
 
 
