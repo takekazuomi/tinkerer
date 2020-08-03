@@ -10,6 +10,7 @@
 '''
 from setuptools import setup, find_packages
 import tinkerer
+import babel
 
 long_desc = '''
 Tinkerer is a blogging engine/static website generator powered by Sphinx.
@@ -58,7 +59,7 @@ setup(
         ]
     },
     install_requires = requires,
-    test_requires = test_requires,
+    tests_require = test_requires,
     test_suite = 'nose.collector',
     message_extractors = {
         'tinkerer': [
